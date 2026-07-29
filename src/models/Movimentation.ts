@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import type IMovimentation from "../interfaces/IMovimentation.js";
 
-export const movimentacaoSchema = new Schema<IMovimentation>({
+const movimentacaoSchema = new Schema<IMovimentation>({
     produto_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'produto',
@@ -18,3 +18,5 @@ export const movimentacaoSchema = new Schema<IMovimentation>({
     quantidade: {type: Number},
     data_hora: {type: Date}
 });
+
+export const Movimentation = mongoose.model<IMovimentation>('movimentation', movimentacaoSchema);

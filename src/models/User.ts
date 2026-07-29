@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 import type IUser from '../interfaces/IUser.js';
 
 
-export const userSchema = new Schema<IUser>({
+const userSchema = new Schema<IUser>({
     nome: {
         type: String,
         // required: [true, 'O nome é obrigatório']
@@ -16,4 +16,6 @@ export const userSchema = new Schema<IUser>({
         // required: [true, 'A senha é obrigatória']
 
     }
-})
+});
+
+export const User = mongoose.model<IUser>('user', userSchema); 

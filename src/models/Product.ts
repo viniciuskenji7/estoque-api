@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import type IProduct from '../interfaces/IProduct.js';
 
-export const productSchema = new Schema<IProduct>({
+const productSchema = new Schema<IProduct>({
     nome: {type: String},
     quantidade_atual: {type: Number},
     quantidade_minima: {type: Number},
@@ -11,4 +11,7 @@ export const productSchema = new Schema<IProduct>({
         required: [true, 'A categoria é obrigatória'],
         autopopulate: true                                                                                            
     }
-})
+});
+
+
+export const Product = mongoose.model<IProduct>('product', productSchema);
