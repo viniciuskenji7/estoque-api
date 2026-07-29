@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
 
-export default interface IProduct {
+export default interface IProduct extends Document {
     nome: string;
     quantidade_atual: number;
     quantidade_minima: number;
-    categoria_id: mongoose.Schema.Types.ObjectId;
+    categoria_id: mongoose.Types.ObjectId;
 }

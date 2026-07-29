@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
+import type IProduct from '../interfaces/IProduct.js';
 
-export const productSchema = new mongoose.Schema({
-    id: {type: String},
+export const productSchema = new Schema<IProduct>({
     nome: {type: String},
     quantidade_atual: {type: Number},
     quantidade_minima: {type: Number},

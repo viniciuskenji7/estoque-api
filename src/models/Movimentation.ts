@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import type IMovimentation from "../interfaces/IMovimentation.js";
 
-export const movimentacaoSchema = new mongoose.Schema({
-    id: {type: String},
+export const movimentacaoSchema = new Schema<IMovimentation>({
     produto_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'produto',

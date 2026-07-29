@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import type ICategory from "../interfaces/ICategory.js";
 
-export const categoriaSchema = new mongoose.Schema({
-    id: {type: String},
+export const categoriaSchema = new Schema<ICategory>({
     nome: {type: String}
 });
