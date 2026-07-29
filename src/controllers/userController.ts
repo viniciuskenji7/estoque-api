@@ -42,3 +42,35 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
         next(err);
     }
 }
+
+export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const id = req.params.id;
+        const userUpdate = await User.findByIdAndUpdate(id, req.body);
+        if (userUpdate !== null) {
+            res.status(200).send({
+                message: 'Usuario atualizado com sucesso',
+                userUpdate
+            });
+        } else {
+            next();
+        }
+    } catch(err) {
+        next(err);
+    }
+}
+export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const id = req.params.id;
+        const userUpdate = await User.findByIdAndDelete(id);
+        if (userUpdate !== null) {
+            res.status(200).send({
+                message: 'Usuario deletado com sucesso',
+            });
+        } else {
+            next();
+        }
+    } catch(err) {
+        next(err);
+    }
+}
