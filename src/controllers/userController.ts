@@ -13,7 +13,7 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
         });
         const finalUser = await user.save();
 
-        res.status(201).json(finalUser);
+        res.status(201).send(finalUser.toJSON());
     } catch(err) {
         next(err);
     }
