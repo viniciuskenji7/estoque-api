@@ -11,7 +11,6 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
             ...req.body,
             senha: hash
         });
-
         const finalUser = await user.save();
 
         res.status(201).json(finalUser);
@@ -20,7 +19,7 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
     }
 }
 
-export const getUser = async (req: Request, res: Response, next: NextFunction) => {
+export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const users = await User.find();
         res.status(200).send(users);
