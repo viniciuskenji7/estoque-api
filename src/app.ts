@@ -1,6 +1,7 @@
 import express, { type Request, type Response } from 'express';
 import db from './config/dbConnect.js';
 import routes from './routes/index.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 const app = express();
 
 db.on("error", console.log.bind(console, 'Erro de conexão'))
@@ -10,5 +11,6 @@ db.once("open", () => {
 
 app.use(express.json());
 app.use('/api', routes);
+app.use(errorHandler);
 
 export default app;
