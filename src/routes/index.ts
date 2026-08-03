@@ -7,7 +7,7 @@ const routes = Router();
 
 routes.use('/users', userRoutes);
 routes.use('/products', productRoutes);
-routes.use('/categorys', categoryRoutes);
+routes.use('/categories', categoryRoutes);
 routes.use('/movimentations', movimentationRoutes);
 
 export default routes;

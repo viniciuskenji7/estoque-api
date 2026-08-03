@@ -1,19 +1,16 @@
 import type { NextFunction, Request, Response } from "express";
 import { User } from "../models/User.js";
 import bcrypt from 'bcrypt';
+import { UserService } from "../services/userService.js";
 
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const saltRounds = 10;
-        const hash = await bcrypt.hash(req.body.senha, saltRounds);
+        const user = await UserService.create(req.body);
 
-        const user = new User({
-            ...req.body,
-            senha: hash
+        res.status(201).json({
+            message: 'Usuario criado com sucesso',
+            user
         });
-        const finalUser = await user.save();
-
-        res.status(201).send(finalUser.toJSON());
     } catch(err) {
         next(err);
     }
