@@ -8,9 +8,7 @@ export class UserService {
     static async create(data: IUser) {
         const password = await hashPassword(data.senha);
 
-        const exists = await User.findOne({
-            email: data.email
-        });
+        const exists = await this.findByEmail(data);
 
         if (exists) {
             throw new Error('Email ja cadastrado');
@@ -23,5 +21,10 @@ export class UserService {
         return await user.save();
     }
 
-
+    static async findByEmail(data: IUser) {
+        const exists = await User.findOne({
+            email: data.email
+        });
+        return exists;
+    }
 }
