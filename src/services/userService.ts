@@ -6,24 +6,15 @@ import { hashPassword } from './bcryptService.js';
 export class UserService {
     
     static async create(data: IUser) {
-        const password = await hashPassword(data.senha);
-
-        const exists = await this.findByEmail(data);
-
-        if (exists) {
-            throw new Error('Email ja cadastrado');
-        }
-
         const user = new User({
-            ...data,
-            senha: password
+            ...data
         });
         return await user.save();
     }
 
-    static async findByEmail(data: IUser) {
+    static async findByEmail(data: string) {
         const exists = await User.findOne({
-            email: data.email
+            email: data
         });
         return exists;
     }
