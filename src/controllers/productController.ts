@@ -1,19 +1,15 @@
 import type { NextFunction, Request, Response } from "express";
 import { Product } from "../models/Product.js";
 import bcrypt from 'bcrypt';
+import { ProductService } from "../services/productService.js";
 
 export const createProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        let newProduct = new Product(req.body);
-        const productResult = await newProduct.save();
-        if (productResult !== null) {
-            res.status(201).send({
-                message: 'Produto criado com sucesso',
-                product: productResult
-            });
-        } else {
-            next();
-        }
+        let newProduct = await ProductService.create(req.body);
+        res.status(201).send({
+            message: 'Produto criado com sucesso',
+            product: newProduct
+        });
     } catch(err) {
         next(err);
     }
